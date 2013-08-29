@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  duration_from: 1
+  duration_to: 1
+  percentual: 1.5
+  fixed_min: 1.5
+  fixed_max: 1.5
+
+two:
+  duration_from: 1
+  duration_to: 1
+  percentual: 1.5
+  fixed_min: 1.5
+  fixed_max: 1.5

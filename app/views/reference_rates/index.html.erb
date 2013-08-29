@@ -1,0 +1,29 @@
+<h1>Listing reference_rates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Rate</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reference_rates.each do |reference_rate| %>
+      <tr>
+        <td><%= reference_rate.name %></td>
+        <td><%= reference_rate.rate %></td>
+        <td><%= link_to 'Show', reference_rate %></td>
+        <td><%= link_to 'Edit', edit_reference_rate_path(reference_rate) %></td>
+        <td><%= link_to 'Destroy', reference_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reference rate', new_reference_rate_path %>

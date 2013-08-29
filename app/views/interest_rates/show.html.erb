@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fixed:</strong>
+  <%= @interest_rate.fixed %>
+</p>
+
+<p>
+  <strong>Duration from:</strong>
+  <%= @interest_rate.duration_from %>
+</p>
+
+<p>
+  <strong>Duration to:</strong>
+  <%= @interest_rate.duration_to %>
+</p>
+
+<p>
+  <strong>Bank customer:</strong>
+  <%= @interest_rate.bank_customer %>
+</p>
+
+<p>
+  <strong>Insured:</strong>
+  <%= @interest_rate.insured %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @interest_rate.rate %>
+</p>
+
+<%= link_to 'Edit', edit_interest_rate_path(@interest_rate) %> |
+<%= link_to 'Back', interest_rates_path %>

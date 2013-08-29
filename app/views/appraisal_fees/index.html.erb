@@ -1,0 +1,37 @@
+<h1>Listing appraisal_fees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Loan</th>
+      <th>Duration from</th>
+      <th>Duration to</th>
+      <th>Percentual</th>
+      <th>Fixed min</th>
+      <th>Fixed max</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appraisal_fees.each do |appraisal_fee| %>
+      <tr>
+        <td><%= appraisal_fee.loan.name %></td>
+        <td><%= appraisal_fee.duration_from %></td>
+        <td><%= appraisal_fee.duration_to %></td>
+        <td><%= appraisal_fee.percentual %></td>
+        <td><%= appraisal_fee.fixed_min %></td>
+        <td><%= appraisal_fee.fixed_max %></td>
+        <td><%= link_to 'Show', appraisal_fee %></td>
+        <td><%= link_to 'Edit', edit_appraisal_fee_path(appraisal_fee) %></td>
+        <td><%= link_to 'Destroy', appraisal_fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Appraisal fee', new_appraisal_fee_path %>

@@ -1,0 +1,45 @@
+<%= form_for(@interest_rate) do |f| %>
+  <% if @interest_rate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@interest_rate.errors.count, "error") %> prohibited this interest_rate from being saved:</h2>
+
+      <ul>
+      <% @interest_rate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :loan %><br>
+    <%= f.select(:loan_id, Loan.all.map{|l| ["#{l.name} (#{l.bank.name}, #{l.loan_type.name})", l.id] }) %>
+  </div>
+  <div class="field">
+    <%= f.label :fixed %><br>
+    <%= f.check_box :fixed %>
+  </div>
+  <div class="field">
+    <%= f.label :duration_from %><br>
+    <%= f.number_field :duration_from %>
+  </div>
+  <div class="field">
+    <%= f.label :duration_to %><br>
+    <%= f.number_field :duration_to %>
+  </div>
+  <div class="field">
+    <%= f.label :bank_customer %><br>
+    <%= f.check_box :bank_customer %>
+  </div>
+  <div class="field">
+    <%= f.label :insured %><br>
+    <%= f.check_box :insured %>
+  </div>
+  <div class="field">
+    <%= f.label :rate %><br>
+    <%= f.text_field :rate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

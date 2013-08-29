@@ -1,9 +1,26 @@
 Bankir1::Application.routes.draw do
+  devise_for :users
+  resources :insurance_fees
+
+  resources :appraisal_fees
+
+  resources :interest_rates
+
+  resources :loan_types
+
+  resources :loans
+
+  resources :banks
+
+  resources :reference_rates
+
+  resources :tests
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'loans#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

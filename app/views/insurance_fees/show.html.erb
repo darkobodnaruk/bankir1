@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Duration from:</strong>
+  <%= @insurance_fee.duration_from %>
+</p>
+
+<p>
+  <strong>Duration to:</strong>
+  <%= @insurance_fee.duration_to %>
+</p>
+
+<p>
+  <strong>Percentual:</strong>
+  <%= @insurance_fee.percentual %>
+</p>
+
+<%= link_to 'Edit', edit_insurance_fee_path(@insurance_fee) %> |
+<%= link_to 'Back', insurance_fees_path %>

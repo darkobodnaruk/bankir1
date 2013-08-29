@@ -1,0 +1,2 @@
+module AppraisalFeesHelper
+end

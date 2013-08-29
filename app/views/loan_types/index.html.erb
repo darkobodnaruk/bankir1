@@ -1,0 +1,27 @@
+<h1>Listing loan_types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loan_types.each do |loan_type| %>
+      <tr>
+        <td><%= loan_type.name %></td>
+        <td><%= link_to 'Show', loan_type %></td>
+        <td><%= link_to 'Edit', edit_loan_type_path(loan_type) %></td>
+        <td><%= link_to 'Destroy', loan_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loan type', new_loan_type_path %>

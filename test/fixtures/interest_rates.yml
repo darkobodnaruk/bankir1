@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fixed: false
+  duration_from: 1
+  duration_to: 1
+  bank_customer: false
+  insured: false
+  rate: 1.5
+
+two:
+  fixed: false
+  duration_from: 1
+  duration_to: 1
+  bank_customer: false
+  insured: false
+  rate: 1.5

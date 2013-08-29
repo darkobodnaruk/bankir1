@@ -1,0 +1,31 @@
+<h1>Listing insurance_fees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Duration from</th>
+      <th>Duration to</th>
+      <th>Percentual</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @insurance_fees.each do |insurance_fee| %>
+      <tr>
+        <td><%= insurance_fee.duration_from %></td>
+        <td><%= insurance_fee.duration_to %></td>
+        <td><%= insurance_fee.percentual %></td>
+        <td><%= link_to 'Show', insurance_fee %></td>
+        <td><%= link_to 'Edit', edit_insurance_fee_path(insurance_fee) %></td>
+        <td><%= link_to 'Destroy', insurance_fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Insurance fee', new_insurance_fee_path %>

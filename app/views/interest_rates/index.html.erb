@@ -1,0 +1,39 @@
+<h1>Listing interest_rates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Loan</th>
+      <th>Fixed</th>
+      <th>Duration from</th>
+      <th>Duration to</th>
+      <th>Bank customer</th>
+      <th>Insured</th>
+      <th>Rate</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @interest_rates.each do |interest_rate| %>
+      <tr>
+        <td><%= interest_rate.loan.name %></td>
+        <td><%= interest_rate.fixed %></td>
+        <td><%= interest_rate.duration_from %></td>
+        <td><%= interest_rate.duration_to %></td>
+        <td><%= interest_rate.bank_customer %></td>
+        <td><%= interest_rate.insured %></td>
+        <td><%= interest_rate.rate %></td>
+        <td><%= link_to 'Show', interest_rate %></td>
+        <td><%= link_to 'Edit', edit_interest_rate_path(interest_rate) %></td>
+        <td><%= link_to 'Destroy', interest_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Interest rate', new_interest_rate_path %>

@@ -1,0 +1,2 @@
+module ReferenceRatesHelper
+end

@@ -1,0 +1,41 @@
+<%= form_for(@appraisal_fee) do |f| %>
+  <% if @appraisal_fee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appraisal_fee.errors.count, "error") %> prohibited this appraisal_fee from being saved:</h2>
+
+      <ul>
+      <% @appraisal_fee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :loan %><br>
+    <%= f.select(:loan_id, Loan.all.map{|l| ["#{l.name} (#{l.bank.name}, #{l.loan_type.name})", l.id] }) %>
+  </div>
+  <div class="field">
+    <%= f.label :duration_from %><br>
+    <%= f.number_field :duration_from %>
+  </div>
+  <div class="field">
+    <%= f.label :duration_to %><br>
+    <%= f.number_field :duration_to %>
+  </div>
+  <div class="field">
+    <%= f.label :percentual %><br>
+    <%= f.text_field :percentual %>
+  </div>
+  <div class="field">
+    <%= f.label :fixed_min %><br>
+    <%= f.text_field :fixed_min %>
+  </div>
+  <div class="field">
+    <%= f.label :fixed_max %><br>
+    <%= f.text_field :fixed_max %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

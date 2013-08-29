@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @reference_rate.name %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @reference_rate.rate %>
+</p>
+
+<%= link_to 'Edit', edit_reference_rate_path(@reference_rate) %> |
+<%= link_to 'Back', reference_rates_path %>

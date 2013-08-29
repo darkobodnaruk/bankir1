@@ -1,0 +1,2 @@
+module InsuranceFeesHelper
+end

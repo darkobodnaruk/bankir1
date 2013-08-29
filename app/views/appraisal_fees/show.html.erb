@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Duration from:</strong>
+  <%= @appraisal_fee.duration_from %>
+</p>
+
+<p>
+  <strong>Duration to:</strong>
+  <%= @appraisal_fee.duration_to %>
+</p>
+
+<p>
+  <strong>Percentual:</strong>
+  <%= @appraisal_fee.percentual %>
+</p>
+
+<p>
+  <strong>Fixed min:</strong>
+  <%= @appraisal_fee.fixed_min %>
+</p>
+
+<p>
+  <strong>Fixed max:</strong>
+  <%= @appraisal_fee.fixed_max %>
+</p>
+
+<%= link_to 'Edit', edit_appraisal_fee_path(@appraisal_fee) %> |
+<%= link_to 'Back', appraisal_fees_path %>
