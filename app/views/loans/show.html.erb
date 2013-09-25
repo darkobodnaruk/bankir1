@@ -1,9 +1,128 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Kredit</h1>
 <p>
-  <strong>Name:</strong>
-  <%= @loan.name %>
+  Ime: <%= @loan.name %><br>
+  Banka: <%= @loan.bank.name %><br>
+  Tip: <%= @loan.loan_type.name %><br/>
 </p>
+<%= link_to 'Uredi', edit_loan_path(@loan) %>
 
-<%= link_to 'Edit', edit_loan_path(@loan) %> |
-<%= link_to 'Back', loans_path %>
+<h1>Obrestne mere - fiksne</h1>
+<p>
+	<table>
+		<thead>
+		    <tr>
+		      <th>Od</th>
+		      <th>Do</th>
+		      <th>Komitent</th>
+		      <th>Zavarovan</th>
+		      <th>Obr. mera</th>
+		      <th></th>
+		      <th></th>
+		    </tr>
+	  	</thead>
+	  	<tbody>
+			<% @loan.interest_rates.where(:fixed => true).each do |interest_rate| %>
+				<tr>
+		        <td><%= interest_rate.duration_from %></td>
+		        <td><%= interest_rate.duration_to %></td>
+		        <td><%= interest_rate.bank_customer ? "da" : "ne" %></td>
+		        <td><%= interest_rate.insured ? "da" : "ne" %></td>
+		        <td><%= interest_rate.rate %></td>
+		        <td><%= link_to 'Uredi', edit_interest_rate_path(interest_rate) %></td>
+		        <td><%= link_to 'Briši', interest_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		        </tr>
+			<% end -%>
+		</tbody>
+	</table>
+</p>
+<%= link_to "Dodaj", new_interest_rate_path %>
+
+<h1>Obrestne mere - variabilne</h1>
+<p>
+	<table>
+		<thead>
+		    <tr>
+		      <th>Od</th>
+		      <th>Do</th>
+		      <th>Komitent</th>
+		      <th>Zavarovan</th>
+		      <th>Obr. mera</th>
+		      <th></th>
+		      <th></th>
+		    </tr>
+	  	</thead>
+	  	<tbody>
+			<% @loan.interest_rates.where(:fixed => false).each do |interest_rate| %>
+				<tr>
+		        <td><%= interest_rate.duration_from %></td>
+		        <td><%= interest_rate.duration_to %></td>
+		        <td><%= interest_rate.bank_customer %></td>
+		        <td><%= interest_rate.insured %></td>
+		        <td><%= interest_rate.rate %></td>
+		        <td><%= link_to 'Uredi', edit_interest_rate_path(interest_rate) %></td>
+		        <td><%= link_to 'Briši', interest_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		        </tr>
+			<% end -%>
+		</tbody>
+	</table>
+</p>
+<%= link_to "Dodaj", new_interest_rate_path %>
+
+<h1>Strošek odobritve</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Od</th>
+      <th>Do</th>
+      <th>%</th>
+      <th>Fiksno min</th>
+      <th>Fiksno max</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loan.appraisal_fees.each do |appraisal_fee| %>
+      <tr>
+        <td><%= appraisal_fee.duration_from %></td>
+        <td><%= appraisal_fee.duration_to %></td>
+        <td><%= appraisal_fee.percentual %></td>
+        <td><%= appraisal_fee.fixed_min %></td>
+        <td><%= appraisal_fee.fixed_max %></td>
+        <td><%= link_to 'Uredi', edit_appraisal_fee_path(appraisal_fee) %></td>
+        <td><%= link_to 'Briši', appraisal_fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "Dodaj", new_appraisal_fee_path %>
+
+<h1>Strošek zavarovanja</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Od</th>
+      <th>Do to</th>
+      <th>%</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loan.insurance_fees.each do |insurance_fee| %>
+      <tr>
+        <td><%= insurance_fee.duration_from %></td>
+        <td><%= insurance_fee.duration_to %></td>
+        <td><%= insurance_fee.percentual %></td>
+        <td><%= link_to 'Uredi', edit_insurance_fee_path(insurance_fee) %></td>
+        <td><%= link_to 'Briši', insurance_fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "Dodaj", new_insurance_fee_path %>
+

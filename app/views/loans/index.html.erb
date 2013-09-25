@@ -1,22 +1,21 @@
-<h1>Listing loans</h1>
+<h1>Krediti</h1>
 
 <table>
-  <thead>
+ <!--  <thead>
     <tr>
       <th>Name</th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
-  </thead>
+  </thead> -->
 
   <tbody>
     <% @loans.each do |loan| %>
       <tr>
         <td><%= loan.name %></td>
-        <td><%= link_to 'Show', loan %></td>
-        <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
-        <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Uredi', loan %></td>
+        <td><%= link_to 'Briši', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Loan', new_loan_path %>
+<%= link_to 'Dodaj', new_loan_path %>

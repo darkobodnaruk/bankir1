@@ -25,10 +25,12 @@ class AppraisalFeesController < ApplicationController
   # POST /appraisal_fees.json
   def create
     @appraisal_fee = AppraisalFee.new(appraisal_fee_params)
+    @appraisal_fee.loan_id = session[:current_loan_id]
 
     respond_to do |format|
       if @appraisal_fee.save
-        format.html { redirect_to appraisal_fees_path, notice: 'Appraisal fee was successfully created.' }
+        # format.html { redirect_to appraisal_fees_path, notice: 'Appraisal fee was successfully created.' }
+        format.html { redirect_to Loan.find(@appraisal_fee.loan) }
         format.json { render action: 'show', status: :created, location: @appraisal_fee }
       else
         format.html { render action: 'new' }

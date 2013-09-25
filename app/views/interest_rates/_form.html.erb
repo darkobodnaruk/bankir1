@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
+<!--   <div class="field">
+    <%#= f.label :loan %><br>
+    <%#= f.select(:loan_id, Loan.all.map{|l| ["#{l.name} (#{l.bank.name}, #{l.loan_type.name})", l.id] }) %>
+  </div> -->
   <div class="field">
-    <%= f.label :loan %><br>
-    <%= f.select(:loan_id, Loan.all.map{|l| ["#{l.name} (#{l.bank.name}, #{l.loan_type.name})", l.id] }) %>
-  </div>
-  <div class="field">
-    <%= f.label :fixed %><br>
+    <%= f.label :fixed, "Fiksna?" %><br>
     <%= f.check_box :fixed %>
   </div>
   <div class="field">
-    <%= f.label :duration_from %><br>
+    <%= f.label :duration_from, "Od" %><br>
     <%= f.number_field :duration_from %>
   </div>
   <div class="field">
-    <%= f.label :duration_to %><br>
+    <%= f.label :duration_to, "Do" %><br>
     <%= f.number_field :duration_to %>
   </div>
   <div class="field">
-    <%= f.label :bank_customer %><br>
+    <%= f.label :bank_customer, "Komitent?" %><br>
     <%= f.check_box :bank_customer %>
   </div>
   <div class="field">
-    <%= f.label :insured %><br>
+    <%= f.label :insured, "Zavarovan?" %><br>
     <%= f.check_box :insured %>
   </div>
   <div class="field">
-    <%= f.label :rate %><br>
+    <%= f.label :rate, "Obr. mera" %><br>
     <%= f.text_field :rate %>
   </div>
   <div class="actions">

@@ -26,11 +26,13 @@ class InterestRatesController < ApplicationController
   # POST /interest_rates.json
   def create
     @interest_rate = InterestRate.new(interest_rate_params)
+    @interest_rate.loan_id = session[:current_loan_id]
 
     respond_to do |format|
       if @interest_rate.save
         # format.html { redirect_to @interest_rate, notice: 'Interest rate was successfully created.' }
-        format.html { redirect_to interest_rates_path, notice: 'Interest rate was successfully created.' }
+        # format.html { redirect_to interest_rates_path, notice: 'Interest rate was successfully created.' }
+        format.html { redirect_to Loan.find(@interest_rate.loan_id) }
         format.json { render action: 'show', status: :created, location: @interest_rate }
       else
         format.html { render action: 'new' }

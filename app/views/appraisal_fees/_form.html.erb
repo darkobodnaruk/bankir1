@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :loan %><br>
-    <%= f.select(:loan_id, Loan.all.map{|l| ["#{l.name} (#{l.bank.name}, #{l.loan_type.name})", l.id] }) %>
-  </div>
+<!--   <div class="field">
+    <%#= f.label :loan %><br>
+    <%#= f.select(:loan_id, Loan.all.map{|l| ["#{l.name} (#{l.bank.name}, #{l.loan_type.name})", l.id] }) %>
+  </div> -->
   <div class="field">
     <%= f.label :duration_from %><br>
     <%= f.number_field :duration_from %>

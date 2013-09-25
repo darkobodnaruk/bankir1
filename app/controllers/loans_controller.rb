@@ -10,6 +10,7 @@ class LoansController < ApplicationController
   # GET /loans/1
   # GET /loans/1.json
   def show
+    session["current_loan_id"] = @loan.id
   end
 
   # GET /loans/new

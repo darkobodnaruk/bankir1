@@ -25,10 +25,12 @@ class InsuranceFeesController < ApplicationController
   # POST /insurance_fees.json
   def create
     @insurance_fee = InsuranceFee.new(insurance_fee_params)
+    @insurance_fee.loan_id = session[:current_loan_id]
 
     respond_to do |format|
       if @insurance_fee.save
-        format.html { redirect_to @insurance_fee, notice: 'Insurance fee was successfully created.' }
+        # format.html { redirect_to @insurance_fee, notice: 'Insurance fee was successfully created.' }
+        format.html { redirect_to Loan.find(@insurance_fee.loan_id) }
         format.json { render action: 'show', status: :created, location: @insurance_fee }
       else
         format.html { render action: 'new' }
