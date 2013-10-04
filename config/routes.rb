@@ -1,5 +1,6 @@
 Bankir1::Application.routes.draw do
   devise_for :users
+
   resources :insurance_fees
 
   resources :appraisal_fees
@@ -8,6 +9,8 @@ Bankir1::Application.routes.draw do
 
   resources :loan_types
 
+  get 'loans/comparison' => 'loans#comparison'
+  post 'loans/comparison_results' => 'loans#comparison_results'
   resources :loans
 
   resources :banks

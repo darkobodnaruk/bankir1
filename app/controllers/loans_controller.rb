@@ -64,6 +64,20 @@ class LoansController < ApplicationController
     end
   end
 
+  def comparison
+  end
+
+  def comparison_results
+    fixed = false
+    @loans = []
+    Loan.where("loan_type_id = ?", params[:loan_type_id]).each do |loan|
+      payment = loan.calculate_payment(params[:principal].to_i, params[:duration].to_i, fixed)      
+      @loans << "#{loan.bank.name}: #{payment.round(2)}" if payment
+    end
+
+    # render :text => "<h1>Mesecni obrok</h1>" + @loans.join("<br/>")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_loan

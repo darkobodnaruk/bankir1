@@ -1,0 +1,17 @@
+<%= form_tag :action => 'comparison_results' do %>
+  <div class="field">
+    <%= label_tag :loan_type, "Tip posojila" %><br>
+    <%= select_tag(:loan_type_id, options_for_select(LoanType.all.map{|lt| [lt.name, lt.id]})) %>
+  </div>
+  <div class="field">
+    <%= label_tag :principal, "Glavnica" %><br>
+    <%= text_field_tag :principal %>
+  </div>
+  <div class="field">
+    <%= label_tag :duration, "Trajanje v mesecih" %><br>
+    <%= text_field_tag :duration %>
+  </div>
+  <div class="actions">
+    <%= submit_tag 'Primerjaj' %>
+  </div>
+<% end %>
