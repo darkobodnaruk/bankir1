@@ -1,4 +1,4 @@
-<%= form_for(@loan) do |f| %>
+<%= form_for(@loan, :html => {:role => "form"}) do |f| %>
   <% if @loan.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
@@ -11,19 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form_group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => "form-control" %>
   </div>
-  <div class="field">
+  <div class="form_group">
     <%= f.label :bank_id %><br>
-    <%= f.select(:bank_id, Bank.all.map{|b| [b.name, b.id]}) %>
+    <%= f.select(:bank_id, Bank.all.map{|b| [b.name, b.id]}, {}, :class => "form-control", :width => "200px") %>
   </div>
-  <div class="field">
+  <div class="form_group">
     <%= f.label :loan_type_id %><br>
-    <%= f.select(:loan_type_id, LoanType.all.map{|b| [b.name, b.id]}) %>
+    <%= f.select(:loan_type_id, LoanType.all.map{|b| [b.name, b.id]}, {}, :class => "form-control") %>
   </div>
+  <div class="form_group">
+    <%= f.label :reference_rate %><br>
+    <%= f.select(:reference_rate, ReferenceRate.all.map{|b| [b.name, b.id]}, {}, :class => "form-control") %>
+  </div>
+  <br/>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
   </div>
 <% end %>

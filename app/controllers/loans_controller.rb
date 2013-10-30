@@ -1,5 +1,6 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :authenticate_user!, :only => [:comparison, :comparison_results]
 
   # GET /loans
   # GET /loans.json
@@ -86,6 +87,6 @@ class LoansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_params
-      params.require(:loan).permit(:name, :bank_id, :loan_type_id)
+      params.require(:loan).permit(:name, :bank_id, :loan_type_id, :reference_rate)
     end
 end

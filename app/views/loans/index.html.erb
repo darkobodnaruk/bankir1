@@ -1,6 +1,6 @@
 <h1>Krediti</h1>
 
-<table>
+<table class="table">
  <!--  <thead>
     <tr>
       <th>Name</th>
@@ -13,9 +13,8 @@
   <tbody>
     <% @loans.each do |loan| %>
       <tr>
-        <td><%= loan.name %></td>
-        <td><%= link_to 'Uredi', loan %></td>
-        <td><%= link_to 'Briši', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to loan.name, loan %></td>
+        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove'), loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

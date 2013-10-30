@@ -5,11 +5,13 @@
   Ime: <%= @loan.name %><br>
   Banka: <%= @loan.bank.name %><br>
   Tip: <%= @loan.loan_type.name %><br/>
+  Referenčna obr. mera: <%= @loan.reference_rate.name %><br/>
 </p>
 <%= link_to 'Uredi', edit_loan_path(@loan) %>
 
 <h1>Obrestne mere - fiksne</h1>
 <p>
+	<%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_interest_rate_path %>
 	<table>
 		<thead>
 		    <tr>
@@ -30,17 +32,17 @@
 		        <td><%= interest_rate.bank_customer ? "da" : "ne" %></td>
 		        <td><%= interest_rate.insured ? "da" : "ne" %></td>
 		        <td><%= interest_rate.rate %></td>
-		        <td><%= link_to 'Uredi', edit_interest_rate_path(interest_rate) %></td>
-		        <td><%= link_to 'Briši', interest_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-edit'), edit_interest_rate_path(interest_rate) %></td>
+		        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove'), interest_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		        </tr>
 			<% end -%>
 		</tbody>
 	</table>
 </p>
-<%= link_to "Dodaj", new_interest_rate_path %>
 
 <h1>Obrestne mere - variabilne</h1>
 <p>
+	<%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_interest_rate_path %>
 	<table>
 		<thead>
 		    <tr>
@@ -61,16 +63,16 @@
 		        <td><%= interest_rate.bank_customer %></td>
 		        <td><%= interest_rate.insured %></td>
 		        <td><%= interest_rate.rate %></td>
-		        <td><%= link_to 'Uredi', edit_interest_rate_path(interest_rate) %></td>
-		        <td><%= link_to 'Briši', interest_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-edit'), edit_interest_rate_path(interest_rate) %></td>
+		        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove'), interest_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		        </tr>
 			<% end -%>
 		</tbody>
 	</table>
 </p>
-<%= link_to "Dodaj", new_interest_rate_path %>
 
 <h1>Strošek odobritve</h1>
+<%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_appraisal_fee_path %>
 <table>
   <thead>
     <tr>
@@ -92,15 +94,15 @@
         <td><%= appraisal_fee.percentual %></td>
         <td><%= appraisal_fee.fixed_min %></td>
         <td><%= appraisal_fee.fixed_max %></td>
-        <td><%= link_to 'Uredi', edit_appraisal_fee_path(appraisal_fee) %></td>
-        <td><%= link_to 'Briši', appraisal_fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-edit'), edit_appraisal_fee_path(appraisal_fee) %></td>
+        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove'), appraisal_fee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to "Dodaj", new_appraisal_fee_path %>
 
 <h1>Strošek zavarovanja</h1>
+<%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_insurance_fee_path %>
 <table>
   <thead>
     <tr>
@@ -124,5 +126,5 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to "Dodaj", new_insurance_fee_path %>
+
 

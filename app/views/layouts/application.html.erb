@@ -5,18 +5,25 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<div>
-	<%= link_to "Krediti", :controller => "/loans" %> |
-	<%= link_to "Banke", :controller => "/banks" %> |
-	<%= link_to "Tipi posojil", :controller => "/loan_types" %> |
-	<%= link_to "Primerjava", :controller => "/loans", :action => "comparison" %>
-	<hr/>
-</div>
+<ul class="nav nav-tabs">
+	<li><%= link_to "Krediti", :controller => "/loans" %></li>
+	<li><%= link_to "Banke", :controller => "/banks" %></li>
+	<li><%= link_to "Tipi posojil", :controller => "/loan_types" %></li>
+	<li><%= link_to "Primerjava", :controller => "/loans", :action => "comparison" %></li>
+</ul>
 
-<%= yield %>
+<div class="container">
+	<%= yield %>
+</div>
 
 </body>
 </html>

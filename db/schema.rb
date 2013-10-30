@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130819163812) do
+ActiveRecord::Schema.define(version: 20131029202051) do
 
   create_table "appraisal_fees", force: true do |t|
     t.integer  "duration_from"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20130819163812) do
     t.datetime "updated_at"
     t.integer  "bank_id"
     t.integer  "loan_type_id"
+    t.integer  "reference_rate_id"
   end
 
   create_table "reference_rates", force: true do |t|
@@ -70,7 +71,10 @@ ActiveRecord::Schema.define(version: 20130819163812) do
     t.float    "rate"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date"
   end
+
+  add_index "reference_rates", ["name", "date"], name: "index_reference_rates_on_name_and_date", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

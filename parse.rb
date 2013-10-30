@@ -6,13 +6,24 @@ require 'wombat'
 r = Wombat.crawl do
 	base_url 'http://www.euribor-ebf.eu'
 	path '/euribor-org/euribor-rates.html'
-	elem 'xpath=//table[@id="report_ajax"]//tr[30]/td[2]'
+	three_month 'xpath=//table[@id="report_ajax"]//tr[12]/td[2]'
+	six_month 'xpath=//table[@id="report_ajax"]//tr[18]/td[2]'
+	twelve_month 'xpath=//table[@id="report_ajax"]//tr[30]/td[2]'
 end
 
-#puts r
-#puts r["elem"]
-#puts r["elem"].gsub!(/^([\.\d]*)\s.*$/, '\1')
+regex = /^([\.\d]+).*\((.+)\)/
 
-if r["elem"] =~ /^([\.\d]+)/
+if r["three_month"] =~ regex
 	puts $1
+	puts $2
+end
+
+if r["six_month"] =~ regex
+	puts $1
+	puts $2
+end
+
+if r["twelve_month"] =~ regex
+	puts $1
+	puts $2
 end
