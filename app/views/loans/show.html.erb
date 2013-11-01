@@ -5,7 +5,7 @@
   Ime: <%= @loan.name %><br>
   Banka: <%= @loan.bank.name %><br>
   Tip: <%= @loan.loan_type.name %><br/>
-  Referenčna obr. mera: <%= @loan.reference_rate.name %><br/>
+  Referenčna obr. mera: <%= @loan.reference_rate %><br/>
 </p>
 <%= link_to 'Uredi', edit_loan_path(@loan) %>
 

@@ -1,7 +1,7 @@
+include Finance
 class Loan < ActiveRecord::Base
 	belongs_to :bank
 	belongs_to :loan_type
-	belongs_to :reference_rate
 	has_many :interest_rates
 	has_many :appraisal_fees
 	has_many :insurance_fees
@@ -13,16 +13,18 @@ class Loan < ActiveRecord::Base
 	def calculate_payment(principal, duration, fixed)
 		# TODO: fetch the right ref. rate for duration
 		if not fixed
-			reference_rate = ReferenceRate.last.rate
+			# reference_rate = ReferenceRate.last.rate
+			# rrate = ReferenceRate.find_by(:name => reference_rate).last.rate
+			rrate = ReferenceRate.where(:name => reference_rate).last.rate
 		else
-			reference_rate = 0
+			rrate = 0
 		end
 
-		logger.debug ">>>>> reference_rate: #{reference_rate}"
+		logger.debug ">>>>> rrate: #{rrate}"
 
 		interest_rate = interest_rates.where("duration_from <= ? and duration_to >= ? and fixed = ?", duration, duration, fixed).first
 		if interest_rate
-			rate = (interest_rate.rate + reference_rate)
+			rate = (interest_rate.rate + rrate)
 			
 			logger.debug ">>>>> rate: #{rate}"
 			
@@ -42,9 +44,21 @@ class Loan < ActiveRecord::Base
 			logger.debug ">>>>> principal: #{principal}"
 			logger.debug ">>>>> payment: #{payment}"
 
-			return payment
+			return payment, rrate
 		else
 			nil
 		end
+	end
+
+	def calculate_eom(principal, costs, payment, num_of_periods, start_dt)
+		logger.debug costs
+		transactions = []
+		transactions << Transaction.new(principal - costs, :date => start_dt)
+		dt = start_dt
+		(1..num_of_periods).each do |i|
+			dt += 1.month
+			transactions << Transaction.new(-1 * payment, :date => dt)
+		end
+		return transactions.xirr.apr.to_f.round(4) * 100
 	end
 end

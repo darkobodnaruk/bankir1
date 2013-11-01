@@ -70,13 +70,26 @@ class LoansController < ApplicationController
 
   def comparison_results
     fixed = false
-    @loans = []
+    @best_loans = []
     Loan.where("loan_type_id = ?", params[:loan_type_id]).each do |loan|
-      payment = loan.calculate_payment(params[:principal].to_i, params[:duration].to_i, fixed)      
-      @loans << "#{loan.bank.name}: #{payment.round(2)}" if payment
+      principal = params[:principal].to_i
+      duration = params[:duration].to_i
+      appraisal_fee = loan.appraisal_fees.first
+      if appraisal_fee
+        costs = appraisal_fee.percentual / 100 * principal
+        costs = appraisal_fee.fixed_min if costs < appraisal_fee.fixed_min
+        costs = appraisal_fee.fixed_max if costs > appraisal_fee.fixed_max
+      else
+        costs = 0
+      end
+      payment, rr = loan.calculate_payment(principal, duration, fixed)
+      eom = loan.calculate_eom(principal, costs, payment, duration, Time.new)
+      if payment
+        bl = {:loan => loan, :payment => payment.round(2), :eom => eom.round(2), :costs => costs, :duration => duration, :principal => principal, :total_cost => (costs + duration * payment - principal).round(2)}
+        # @best_loans << "#{loan.bank.name}: #{payment.round(2)} #{eom}"
+        @best_loans << bl
+      end
     end
-
-    # render :text => "<h1>Mesecni obrok</h1>" + @loans.join("<br/>")
   end
 
   private

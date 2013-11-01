@@ -1,6 +1,23 @@
-<h1>Mesečni obrok</h1>
-
-<% @loans.each do |loan| %>
-	<%= loan %>
-	<br/>
+<% @best_loans.each do |bl| %>
+	<div class="comparison_result">
+		<h2><%= bl[:loan].bank.name %></h2>
+		<table width=100%>
+		<tr>
+			<td>Anuiteta:</td>
+			<td><%= number_to_currency(bl[:payment], :unit => "EUR ", :separator => ",", :delimiter => ".") %></td>
+		</tr>
+		<tr>
+			<td>EOM:</td>
+			<td><%= number_to_percentage(bl[:eom], :precision => 2, :separator => ",") %></td>
+		</tr>
+		<tr>
+			<td>Strošek odobritve in zavarovanja:</td>
+			<td><%= number_to_currency(bl[:costs], :unit => "EUR ", :separator => ",", :delimiter => ".") %></td>
+		</tr>
+		<tr>
+			<td>Skupni strošek kredita:</td>
+			<td><%= number_to_currency(bl[:total_cost], :unit => "EUR ", :separator => ",", :delimiter => ".") %></td>
+		</tr>
+		</table>
+	</div>
 <% end -%>

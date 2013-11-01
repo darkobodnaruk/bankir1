@@ -11,7 +11,45 @@ th {
 }
 
 body {
-	background: url("/assets/_____66_III_1024_768.jpg");
+	background: url("/assets/hope_by_xxrapekxx-d6pu8si-1280x960.png");
 	background-size: cover;
-	/*background-position: center;*/
+	/* background-position: center; */
+}
+
+.container {
+	background: rgba(0, 0, 0, 0.5);
+	width: 700px;
+	margin: 20px auto 20px;
+	color: #aaa;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	padding-bottom: 10px;
+}
+
+.comparison {
+	width: 200px;
+	margin: 0 auto;
+	position: relative;
+	/*top: 100px;*/
+}
+
+.comparison_result {
+	width: 400px;
+	margin: 20px auto 20px;
+	/*background: rgba(0, 0, 0, 0.5);*/
+	padding: 30px;
+	color: #ccc;
+	border: 1px solid #777;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+}
+
+.nav > li > a {
+	color: #ccc;
+}
+
+.nav > li > a:hover {
+	color: #333;
 }

@@ -1,19 +1,22 @@
-<%= form_tag({:action => 'comparison_results'}, :role => "form") do %>
-  <div class="form_group">
-    <%= label_tag :loan_type, "Tip posojila" %><br>
-    <%= select_tag(:loan_type_id, options_for_select(LoanType.all.map{|lt| [lt.name, lt.id]}), :class => "form-control", :width => "200px") %>
-  </div>
-  <div class="form_group">
-    <%= label_tag :principal, "Glavnica" %><br>
-    <%= text_field_tag :principal, nil, :class => "form-control" %>
-  </div>
-  <div class="form_group">
-    <%= label_tag :duration, "Trajanje v mesecih" %><br>
-    <%= text_field_tag :duration, nil, :class => "form-control" %>
-  </div>
-  <br/>
-  <div class="actions">
-    <%#= submit_tag 'Primerjaj' %>
-    <%= submit_tag 'Primerjaj', :class => "btn btn-primary" %>
-  </div>
-<% end %>
+<br/>
+<div class="comparison">
+  <%= form_tag({:action => 'comparison_results'}, :role => "form") do %>
+    <div class="form_group">
+      <%#= label_tag :loan_type, "Tip posojila" %><br>
+      <%= select_tag(:loan_type_id, options_for_select(LoanType.all.map{|lt| [lt.name, lt.id]}.prepend(["-- Tip posojila --", "0"])), :class => "form-control", :width => "200px") %>
+    </div>
+    <div class="form_group">
+      <%#= label_tag :principal, "Glavnica" %><br>
+      <%= text_field_tag :principal, nil, :class => "form-control", :placeholder => "Glavnica" %>
+    </div>
+    <div class="form_group">
+      <%#= label_tag :duration, "Trajanje v mesecih" %><br>
+      <%= text_field_tag :duration, nil, :class => "form-control", :placeholder => "Trajanje v mesecih" %>
+    </div>
+    <br/>
+    <div class="actions">
+      <%#= submit_tag 'Primerjaj' %>
+      <%= submit_tag 'Primerjaj', :class => "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

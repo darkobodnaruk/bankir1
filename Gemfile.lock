@@ -46,6 +46,9 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    finance (2.0.0)
+      flt (>= 1.3.0)
+    flt (1.3.0)
     hike (1.2.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -154,6 +157,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
+  finance
   jbuilder (~> 1.2)
   jquery-rails
   rails (= 4.0.0)
