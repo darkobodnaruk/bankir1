@@ -89,6 +89,7 @@ class LoansController < ApplicationController
         # @best_loans << "#{loan.bank.name}: #{payment.round(2)} #{eom}"
         @best_loans << bl
       end
+      @best_loans.sort!{|x,y| x[:total_cost] <=> y[:total_cost]}.take(3)
     end
   end
 
