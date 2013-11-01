@@ -44,7 +44,7 @@ class Loan < ActiveRecord::Base
 			logger.debug ">>>>> principal: #{principal}"
 			logger.debug ">>>>> payment: #{payment}"
 
-			return payment, rrate
+			return payment, rrate, interest_rate.rate
 		else
 			nil
 		end

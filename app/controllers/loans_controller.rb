@@ -82,10 +82,10 @@ class LoansController < ApplicationController
       else
         costs = 0
       end
-      payment, rr = loan.calculate_payment(principal, duration, fixed)
+      payment, rr, interest_rate = loan.calculate_payment(principal, duration, fixed)
       eom = loan.calculate_eom(principal, costs, payment, duration, Time.new)
       if payment
-        bl = {:loan => loan, :payment => payment.round(2), :eom => eom.round(2), :costs => costs, :duration => duration, :principal => principal, :total_cost => (costs + duration * payment - principal).round(2)}
+        bl = {:loan => loan, :payment => payment.round(2), :eom => eom.round(2), :costs => costs, :duration => duration, :principal => principal, :total_cost => (costs + duration * payment - principal).round(2), :interest_rate => interest_rate, :ref_rate => rr}
         # @best_loans << "#{loan.bank.name}: #{payment.round(2)} #{eom}"
         @best_loans << bl
       end

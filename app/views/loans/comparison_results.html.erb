@@ -7,6 +7,14 @@
 			<td><%= number_to_currency(bl[:payment], :unit => "EUR ", :separator => ",", :delimiter => ".") %></td>
 		</tr>
 		<tr>
+			<td>Obrestna mera:</td>
+			<td><%= number_to_percentage(bl[:interest_rate], :precision => 2, :separator => ",") %></td>
+		</tr>
+		<tr>
+			<td>Referenčna obrestna mera:</td>
+			<td><%= number_to_percentage(bl[:ref_rate], :precision => 2, :separator => ",") %></td>
+		</tr>
+		<tr>
 			<td>EOM:</td>
 			<td><%= number_to_percentage(bl[:eom], :precision => 2, :separator => ",") %></td>
 		</tr>
