@@ -25,7 +25,8 @@
   </div>
   <div class="form_group">
     <%= f.label :reference_rate %><br>
-    <%= f.select(:reference_rate, ReferenceRate.all.map{|b| [b.name, b.name]}, {}, :class => "form-control") %>
+    <%#= f.select(:reference_rate, ReferenceRate.all.map{|b| [b.name, b.name]}, {}, :class => "form-control") %>
+    <%= f.select(:reference_rate, ReferenceRate.all.map{|b| [b.name, b.name]}.uniq, {}, :class => "form-control") %>
   </div>
   <br/>
   <div class="actions">
