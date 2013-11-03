@@ -11,7 +11,7 @@
   </thead> -->
 
   <tbody>
-    <% @loans.each do |loan| %>
+    <% @loans.sort{|x,y| x.bank.name <=> y.bank.name}.each do |loan| %>
       <tr>
         <td><%= link_to loan.bank.name + " - " + loan.name, loan %></td>
         <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove'), loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>

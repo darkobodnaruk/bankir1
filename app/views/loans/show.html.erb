@@ -2,17 +2,17 @@
 
 <h2>Kredit</h2>
 <p>
-  Ime: <%= @loan.name %><br>
-  Banka: <%= @loan.bank.name %><br>
-  Tip: <%= @loan.loan_type.name %><br/>
-  Referenčna obr. mera: <%= @loan.reference_rate %><br/>
+  <%= @loan.name %><br>
+  <%= @loan.bank.name %><br>
+  <%= @loan.loan_type.name %><br/>
+  <%= @loan.reference_rate %><br/>
 </p>
 <%= link_to 'Uredi', edit_loan_path(@loan) %>
 
-<h2>Obrestne mere - fiksne</h2>
+<h3>Obrestne mere - fiksne</h3>
 <p>
-	<%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_interest_rate_path %>
-	<table>
+	<%= link_to button_tag(content_tag(:span, '', :class => 'glyphicon glyphicon-plus') + ' Dodaj', :class => 'btn btn-xs'), new_interest_rate_path %>
+	<table class="table">
 		<thead>
 		    <tr>
 		      <th>Od</th>
@@ -40,10 +40,10 @@
 	</table>
 </p>
 
-<h2>Obrestne mere - variabilne</h2>
+<h3>Obrestne mere - variabilne</h3>
 <p>
-	<%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_interest_rate_path %>
-	<table>
+	<%#= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_interest_rate_path %>
+	<table class="table">
 		<thead>
 		    <tr>
 		      <th>Od</th>
@@ -69,11 +69,12 @@
 			<% end -%>
 		</tbody>
 	</table>
+	<%= link_to button_tag(content_tag(:span, '', :class => 'glyphicon glyphicon-plus') + ' Dodaj', :class => 'btn btn-xs'), new_interest_rate_path %>
 </p>
 
-<h2>Strošek odobritve</h2>
-<%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_appraisal_fee_path %>
-<table>
+<h3>Strošek odobritve</h3>
+<%#= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_appraisal_fee_path %>
+<table class="table">
   <thead>
     <tr>
       <th>Od</th>
@@ -100,10 +101,11 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to button_tag(content_tag(:span, '', :class => 'glyphicon glyphicon-plus') + ' Dodaj', :class => 'btn btn-xs'), new_appraisal_fee_path %>
 
-<h2>Strošek zavarovanja</h2>
-<%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_insurance_fee_path %>
-<table>
+<h3>Strošek zavarovanja</h3>
+<%#= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_insurance_fee_path %>
+<table class="table">
   <thead>
     <tr>
       <th>Od</th>
@@ -126,5 +128,6 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to button_tag(content_tag(:span, '', :class => 'glyphicon glyphicon-plus') + ' Dodaj', :class => 'btn btn-xs'), new_insurance_fee_path %>
 
 

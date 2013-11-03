@@ -118,7 +118,7 @@ class LoansController < ApplicationController
         }
       end
     end
-    @best_loans.sort!{|x,y| x[:total_cost] <=> y[:total_cost]}.take(3)
+    @best_loans = @best_loans.sort!{|x,y| x[:total_cost] <=> y[:total_cost]}.take(3)
   end
 
   private
