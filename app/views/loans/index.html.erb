@@ -1,4 +1,4 @@
-<h1>Krediti</h1>
+<h2>Krediti</h2>
 
 <table class="table">
  <!--  <thead>
@@ -13,7 +13,7 @@
   <tbody>
     <% @loans.each do |loan| %>
       <tr>
-        <td><%= link_to loan.name, loan %></td>
+        <td><%= link_to loan.bank.name + " - " + loan.name, loan %></td>
         <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove'), loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

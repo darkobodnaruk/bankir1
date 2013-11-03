@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Kredit</h1>
+<h2>Kredit</h2>
 <p>
   Ime: <%= @loan.name %><br>
   Banka: <%= @loan.bank.name %><br>
@@ -9,7 +9,7 @@
 </p>
 <%= link_to 'Uredi', edit_loan_path(@loan) %>
 
-<h1>Obrestne mere - fiksne</h1>
+<h2>Obrestne mere - fiksne</h2>
 <p>
 	<%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_interest_rate_path %>
 	<table>
@@ -25,7 +25,7 @@
 		    </tr>
 	  	</thead>
 	  	<tbody>
-			<% @loan.interest_rates.where(:fixed => true).each do |interest_rate| %>
+			<% @loan.interest_rates.where(:fixed => true).order("duration_from").each do |interest_rate| %>
 				<tr>
 		        <td><%= interest_rate.duration_from %></td>
 		        <td><%= interest_rate.duration_to %></td>
@@ -40,7 +40,7 @@
 	</table>
 </p>
 
-<h1>Obrestne mere - variabilne</h1>
+<h2>Obrestne mere - variabilne</h2>
 <p>
 	<%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_interest_rate_path %>
 	<table>
@@ -56,7 +56,7 @@
 		    </tr>
 	  	</thead>
 	  	<tbody>
-			<% @loan.interest_rates.where(:fixed => false).each do |interest_rate| %>
+			<% @loan.interest_rates.where(:fixed => false).order("duration_from").each do |interest_rate| %>
 				<tr>
 		        <td><%= interest_rate.duration_from %></td>
 		        <td><%= interest_rate.duration_to %></td>
@@ -71,7 +71,7 @@
 	</table>
 </p>
 
-<h1>Strošek odobritve</h1>
+<h2>Strošek odobritve</h2>
 <%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_appraisal_fee_path %>
 <table>
   <thead>
@@ -101,7 +101,7 @@
   </tbody>
 </table>
 
-<h1>Strošek zavarovanja</h1>
+<h2>Strošek zavarovanja</h2>
 <%= link_to link_to content_tag(:span, '', :class => 'glyphicon glyphicon-plus'), new_insurance_fee_path %>
 <table>
   <thead>

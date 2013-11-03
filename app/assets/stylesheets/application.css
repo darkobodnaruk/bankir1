@@ -11,3 +11,10 @@
  *= require_self
  *= require_tree .
  */
+
+/*@font-face {
+	font-family: "Sabado Regular";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Sabado Regular"), url("assets/Sabado Regular.otf") format("opentype");
+}*/

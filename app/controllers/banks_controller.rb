@@ -28,7 +28,7 @@ class BanksController < ApplicationController
 
     respond_to do |format|
       if @bank.save
-        format.html { redirect_to @bank, notice: 'Bank was successfully created.' }
+        format.html { redirect_to :action => :index, notice: 'Bank was successfully created.' }
         format.json { render action: 'show', status: :created, location: @bank }
       else
         format.html { render action: 'new' }

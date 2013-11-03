@@ -74,23 +74,51 @@ class LoansController < ApplicationController
     Loan.where("loan_type_id = ?", params[:loan_type_id]).each do |loan|
       principal = params[:principal].to_i
       duration = params[:duration].to_i
+
+      # strosek odobritve
       appraisal_fee = loan.appraisal_fees.first
       if appraisal_fee
-        costs = appraisal_fee.percentual / 100 * principal
-        costs = appraisal_fee.fixed_min if costs < appraisal_fee.fixed_min
-        costs = appraisal_fee.fixed_max if costs > appraisal_fee.fixed_max
+        appraisal_cost = appraisal_fee.percentual / 100 * principal
+        appraisal_cost = appraisal_fee.fixed_min if appraisal_cost < appraisal_fee.fixed_min
+        appraisal_cost = appraisal_fee.fixed_max if appraisal_cost > appraisal_fee.fixed_max
       else
-        costs = 0
+        appraisal_cost = 0
       end
-      payment, rr, interest_rate = loan.calculate_payment(principal, duration, fixed)
+
+      # strosek zavarovanja
+      insurance_fee = loan.insurance_fees.first
+      if insurance_fee
+        insurance_cost = insurance_fee.percentual / 100 * principal
+        insurance_cost = insurance_fee.fixed_min if insurance_cost < insurance_fee.fixed_min
+        insurance_cost = insurance_fee.fixed_max if insurance_cost > insurance_fee.fixed_max
+      else
+        insurance_cost = 0
+      end
+
+      costs = appraisal_cost + insurance_cost
+
+      # calculate payment
+      payment, ref_rate, interest_rate = loan.calculate_payment(principal, duration, fixed)
+
+      # calculate IRR
       eom = loan.calculate_eom(principal, costs, payment, duration, Time.new)
+
       if payment
-        bl = {:loan => loan, :payment => payment.round(2), :eom => eom.round(2), :costs => costs, :duration => duration, :principal => principal, :total_cost => (costs + duration * payment - principal).round(2), :interest_rate => interest_rate, :ref_rate => rr}
-        # @best_loans << "#{loan.bank.name}: #{payment.round(2)} #{eom}"
-        @best_loans << bl
+        @best_loans << {
+          :loan => loan, 
+          :payment => payment.round(2), 
+          :eom => eom.round(2), 
+          :costs => costs,
+          :duration => duration, 
+          :principal => principal, 
+          :total_cost => (costs + duration * payment - principal).round(2), 
+          :interest_rate => interest_rate, 
+          :ref_rate => ref_rate,
+          :ref_rate_name => loan.reference_rate
+        }
       end
-      @best_loans.sort!{|x,y| x[:total_cost] <=> y[:total_cost]}.take(3)
     end
+    @best_loans.sort!{|x,y| x[:total_cost] <=> y[:total_cost]}.take(3)
   end
 
   private
