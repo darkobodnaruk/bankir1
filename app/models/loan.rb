@@ -2,9 +2,9 @@ include Finance
 class Loan < ActiveRecord::Base
 	belongs_to :bank
 	belongs_to :loan_type
-	has_many :interest_rates
-	has_many :appraisal_fees
-	has_many :insurance_fees
+	has_many :interest_rates, :dependent => :destroy
+	has_many :appraisal_fees, :dependent => :destroy
+	has_many :insurance_fees, :dependent => :destroy
 
 	# CALC_METHOD = :orig
 	CALC_METHOD = :priporocila_bs_anuitetni

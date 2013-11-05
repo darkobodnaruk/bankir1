@@ -11,6 +11,7 @@ Bankir1::Application.routes.draw do
 
   get 'loans/comparison' => 'loans#comparison'
   post 'loans/comparison_results' => 'loans#comparison_results'
+  get 'loans/change_theme' => 'loans#change_theme'
   resources :loans
 
   resources :banks

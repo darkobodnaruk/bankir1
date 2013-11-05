@@ -121,6 +121,10 @@ class LoansController < ApplicationController
     @best_loans = @best_loans.sort!{|x,y| x[:total_cost] <=> y[:total_cost]}.take(3)
   end
 
+  def change_theme
+    @session[:theme] = params[:name]
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_loan

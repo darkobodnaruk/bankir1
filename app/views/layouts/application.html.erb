@@ -14,12 +14,18 @@
 </head>
 <body>
 
-<ul class="nav nav-tabs">
+<div class="collapse navbar-collapse">
+<!-- <ul class="nav nav-pills"> -->
+<ul class="nav navbar-nav">
 	<li><%= link_to "Krediti", :controller => "/loans" %></li>
 	<li><%= link_to "Banke", :controller => "/banks" %></li>
 	<li><%= link_to "Tipi posojil", :controller => "/loan_types" %></li>
 	<li><%= link_to "Primerjava", :controller => "/loans", :action => "comparison" %></li>
 </ul>
+<!-- <ul class="nav navbar-nav navbar-right">
+  <li><%#= link_to "tema1", {:action => "change_theme", :name => "vintaged"}, :remote => true %></li>
+</ul> -->
+</div>
 
 <div class="container">
 	<%= yield %>
