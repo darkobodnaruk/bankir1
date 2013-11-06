@@ -30,7 +30,7 @@
 		        <td><%= interest_rate.duration_to %></td>
 		        <td><%= interest_rate.bank_customer ? "da" : "ne" %></td>
 		        <td><%= interest_rate.insured ? "da" : "ne" %></td>
-		        <td><%= interest_rate.rate %></td>
+		        <td><%= number_with_delimiter(interest_rate.rate, :delimiter => ".", :separator => ",") %></td>
 		        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-edit'), edit_interest_rate_path(interest_rate) %></td>
 		        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove'), interest_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		        </tr>
@@ -62,7 +62,7 @@
 		        <td><%= interest_rate.duration_to %></td>
 		        <td><%= interest_rate.bank_customer %></td>
 		        <td><%= interest_rate.insured %></td>
-		        <td><%= interest_rate.rate %></td>
+		        <td><%= number_with_delimiter(interest_rate.rate, :delimiter => ".", :separator => ",") %></td>
 		        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-edit'), edit_interest_rate_path(interest_rate) %></td>
 		        <td><%= link_to content_tag(:span, '', :class => 'glyphicon glyphicon-remove'), interest_rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		        </tr>

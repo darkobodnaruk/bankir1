@@ -1,3 +1,11 @@
+<div class="comparison_result_title">
+	<center>
+	<h3><%= number_to_currency(@principal, :unit => "EUR ", :separator => ",", :delimiter => ".") %>
+	na
+	<%= @duration %> mesecev</h3>
+	</center>
+</div>
+
 <% @best_loans.each do |bl| %>
 	<div class="comparison_result">
 		<h2><%= bl[:loan].bank.name + " - " + bl[:loan].name%></h2>

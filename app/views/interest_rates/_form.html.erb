@@ -37,7 +37,8 @@
   </div>
   <div class="field">
     <%= f.label :rate, "Obr. mera" %><br>
-    <%= f.text_field :rate %>
+    <%#= f.text_field :rate %>
+    <%= text_field_tag "interest_rate[rate]", number_with_delimiter(@interest_rate.rate, :delimiter => ".", :separator => ",") %>
   </div>
   <div class="actions">
     <%= f.submit %>

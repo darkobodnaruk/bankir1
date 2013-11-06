@@ -27,6 +27,7 @@ class LoansController < ApplicationController
   # POST /loans.json
   def create
     logger.debug "!! create"
+    loan_params
     @loan = Loan.new(loan_params)
     # logger.debug loan_params
 
@@ -70,11 +71,11 @@ class LoansController < ApplicationController
 
   def comparison_results
     fixed = false
+    principal = params[:principal].to_i
+    duration = params[:duration].to_i
+    
     @best_loans = []
     Loan.where("loan_type_id = ?", params[:loan_type_id]).each do |loan|
-      principal = params[:principal].to_i
-      duration = params[:duration].to_i
-
       # strosek odobritve
       appraisal_fee = loan.appraisal_fees.first
       if appraisal_fee
@@ -119,6 +120,8 @@ class LoansController < ApplicationController
       end
     end
     @best_loans = @best_loans.sort!{|x,y| x[:total_cost] <=> y[:total_cost]}.take(3)
+    @duration = duration
+    @principal = principal
   end
 
   def change_theme

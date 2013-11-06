@@ -44,6 +44,7 @@ class InterestRatesController < ApplicationController
   # PATCH/PUT /interest_rates/1
   # PATCH/PUT /interest_rates/1.json
   def update
+    # logger.debug ("tmp.class: " + interest_rate_params[:rate].class.to_s)
     respond_to do |format|
       if @interest_rate.update(interest_rate_params)
         # format.html { redirect_to @interest_rate, notice: 'Interest rate was successfully updated.' }
@@ -74,6 +75,9 @@ class InterestRatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def interest_rate_params
+      # convert to sl locale floating point number (delimiter/separator)
+      params[:interest_rate][:rate].gsub!('.', '')
+      params[:interest_rate][:rate].gsub!(',','.')
       params.require(:interest_rate).permit(:fixed, :duration_from, :duration_to, :bank_customer, :insured, :rate, :loan_id)
     end
 end
