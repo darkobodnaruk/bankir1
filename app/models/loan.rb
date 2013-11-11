@@ -20,7 +20,7 @@ class Loan < ActiveRecord::Base
 			rrate = 0
 		end
 
-		logger.debug ">>>>> rrate: #{rrate}"
+		# logger.debug ">>>>> rrate: #{rrate}"
 
 		interest_rate = interest_rates.where("duration_from <= ? and duration_to >= ? and fixed = ?", duration, duration, fixed).first
 		if interest_rate
@@ -38,11 +38,12 @@ class Loan < ActiveRecord::Base
 				# nothing
 			end
 
-			logger.debug ">>>>> rate: #{rate}"
-			logger.debug ">>>>> obdobni_obrestovalni_faktor: #{obdobni_obrestovalni_faktor}"
-			logger.debug ">>>>> duration: #{duration}"
-			logger.debug ">>>>> principal: #{principal}"
-			logger.debug ">>>>> payment: #{payment}"
+			# logger.debug ">>>>> rate: #{rate}"
+			# logger.debug ">>>>> obdobni_obrestovalni_faktor: #{obdobni_obrestovalni_faktor}"
+			# logger.debug ">>>>> duration: #{duration}"
+			# logger.debug ">>>>> principal: #{principal}"
+			# logger.debug ">>>>> payment: #{payment}"
+			# logger.debug ">>>>> " + (Time.now - t1).to_s + " seconds"
 
 			return payment, rrate, interest_rate.rate
 		else
@@ -50,7 +51,8 @@ class Loan < ActiveRecord::Base
 		end
 	end
 
-	def calculate_eom(principal, costs, payment, num_of_periods, start_dt)
+	# def calculate_eom(principal, costs, payment, num_of_periods, start_dt)
+	def self.calculate_eom(principal, costs, payment, num_of_periods, start_dt)
 		logger.debug costs
 		transactions = []
 		transactions << Transaction.new(principal - costs, :date => start_dt)
@@ -59,6 +61,10 @@ class Loan < ActiveRecord::Base
 			dt += 1.month
 			transactions << Transaction.new(-1 * payment, :date => dt)
 		end
-		return transactions.xirr.apr.to_f.round(4) * 100
+
+		t1 = Time.now
+		eom = transactions.xirr.apr.to_f.round(4) * 100
+		logger.debug (Time.now - t1).to_s + " seconds for xirr of #{num_of_periods} transactions"
+		return eom
 	end
 end

@@ -101,17 +101,20 @@ class LoansController < ApplicationController
       # calculate payment
       payment, ref_rate, interest_rate = loan.calculate_payment(principal, duration, fixed)
 
-      # calculate IRR
-      eom = loan.calculate_eom(principal, costs, payment, duration, Time.new)
+      # calculate IRR - it's CPU expensive, calculate it later, only for the top 3 loans
+      # if payment
+      #   eom = loan.calculate_eom(principal, costs, payment, duration, Time.new)
+      # end
 
       if payment
         @best_loans << {
           :loan => loan, 
           :payment => payment.round(2), 
-          :eom => eom.round(2), 
+          :eom => nil,
           :costs => costs,
           :duration => duration, 
-          :principal => principal, 
+          :principal => principal,
+          :costs => costs,
           :total_cost => (costs + duration * payment - principal).round(2), 
           :interest_rate => interest_rate, 
           :ref_rate => ref_rate,
@@ -119,7 +122,15 @@ class LoansController < ApplicationController
         }
       end
     end
+
+    # select top 3
     @best_loans = @best_loans.sort!{|x,y| x[:total_cost] <=> y[:total_cost]}.take(3)
+
+    # calculate EOM
+    @best_loans.each do |loan|
+      loan[:eom] = Loan.calculate_eom(loan[:principal], loan[:costs], loan[:payment], loan[:duration], Time.new).round(2)
+    end
+
     @duration = duration
     @principal = principal
   end
