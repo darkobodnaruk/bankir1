@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :edit, :update, :destroy]
   skip_before_filter :authenticate_user!, :only => [:comparison, :comparison_results]
@@ -73,6 +75,26 @@ class LoansController < ApplicationController
     fixed = false
     principal = params[:principal].to_i
     duration = params[:duration].to_i
+
+    if duration > 360
+      flash[:notice] = "Trajanje ne sme biti daljše od 360 mesecev."
+      redirect_to :action => :comparison
+      return
+    end
+    if params[:loan_type_id] == 0
+      flash[:notice] = "Izbrati morate tip kredita."
+      redirect_to :action => :comparison
+      return
+    end
+    if principal == 0
+      flash[:notice] = "Glavnica mora biti numerična."
+      redirect_to :action => :comparison
+      return
+    else
+      logger.debug("principal: " + principal.to_s)
+    end
+
+    logger.debug("proceeding")
     
     @best_loans = []
     Loan.where("loan_type_id = ?", params[:loan_type_id]).each do |loan|
